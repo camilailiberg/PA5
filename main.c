@@ -1,5 +1,10 @@
 #include <main.h>
 
+// void check (*cell)
+// {
+
+// }
+
 int main( int argc, char *argv[]){
 
 	char inExt[4], outExt[4];
@@ -28,23 +33,66 @@ int main( int argc, char *argv[]){
 	}
 	fprintf(stderr, "in format is %s, out format is %s\n", inExt, outExt);
 	
-	if(!strcmp(inExt, "csv") && !strcmp(outExt, "txt")){ //? if inExt == csv and outExt == txt
+	//* csv to tl5
+	if(!strcmp(inExt, "csv") && !strcmp(outExt, "tl5")){ //? if inExt == csv and outExt == tl5
 		while(fgets(line, MAX_LINE_LENGTH, stdin)){ //? getting first line from 
 			while(sscanf(line,"%[^,],%[^\n]\n",cell , line) == 
 			2)//(strchr(rest, ',')){ //? this is getting the first cell value stored in cell and the rest of the cells of that row stored in line
 			{
-				printf("internal cell followed by a tab: %s\t", cell);//internal cell followed by tab
+				if(strlen(cell) >= 5)
+				{
+					printf("%.5s|",cell);
+				}
+				else if(strlen(cell) < 5)
+				{
+					printf("%-5s|",cell);
+				}
 			}
-		printf("last cell followed by new line: %s\n",cell);//last cell followed by new line
+			if(strlen(cell) >= 5)
+			{
+				printf("%.5s|",cell);
+			}
+			else if(strlen(cell) < 5)
+			{
+				printf("%-5s|\n",cell);
+			}
+			
+		}
 	}
-	}else if(!strcmp(inExt, "txt") && !strcmp(outExt, "csv")){ //? if inExt == txt and outExt == csv
+	//* csv to csv
+	else if(!strcmp(inExt, "csv") && !strcmp(outExt, "csv")){ //? if inExt == csv and outExt == csv
 		while(fgets(line, MAX_LINE_LENGTH, stdin)){ //? getting first line
-			while(sscanf(line,"%[^\t]\t%[^\n]\n",cell , line) == 
+			while(sscanf(line,"%[^,],%[^\n]\n",cell , line) == 
 			2)//(strchr(rest, ',')){ //? this is getting the first cell value stored in cell and the rest of the cells of that row stored in line
 			{
-				printf("internal cell followed by a tab: %s,", cell);//internal cell followed by tab
+				//printf("intern
+				printf("%s,",cell);
 			}
-			printf("last cell followed by new line: %s\n",cell);//last cell followed by new line
+			printf("%s\n",cell);
+		}
+	}
+	//* tl5 to tl5
+	else if(!strcmp(inExt, "tl5") && !strcmp(outExt, "tl5")){ //? if inExt == tl5 and outExt == tl5
+		while(fgets(line, MAX_LINE_LENGTH, stdin)){ //? getting first line
+			while(sscanf(line,"%[^|]|%[^\n]\n",cell , line) == 
+			2)//(strchr(rest, ',')){ //? this is getting the first cell value stored in cell and the rest of the cells of that row stored in line
+			{
+				printf("%s|", cell);
+			}
+			printf("%s|\n",cell);
+		}
+	}
+	//* tl5 to csv
+	else if(!strcmp(inExt, "tl5") && !strcmp(outExt, "csv")){ //? if inExt == tl5 and outExt == csv
+		while(fgets(line, MAX_LINE_LENGTH, stdin)){ //? getting first line
+			while(sscanf(line,"%[^|]|%[^\n]\n",cell , line) == 
+			2)//(strchr(rest, ',')){ //? this is getting the first cell value stored in cell and the rest of the cells of that row stored in line
+			{
+				sscanf(cell,"%[^ ]",cell);
+				printf("%s,", cell);
+			}
+			sscanf(cell,"%[^ ]",cell);
+			printf("%s\n", cell);
 		}
 	}
 
