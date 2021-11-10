@@ -1,10 +1,5 @@
 #include <main.h>
 
-// void check (*cell)
-// {
-
-// }
-
 int main( int argc, char *argv[]){
 
 	char inExt[4], outExt[4];
