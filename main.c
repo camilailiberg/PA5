@@ -50,11 +50,11 @@ int main( int argc, char *argv[]){
 			}
 			if(strlen(cell) >= 5)
 			{
-				printf("%.5s|",cell);
+				printf("%.5s",cell);
 			}
 			else if(strlen(cell) < 5)
 			{
-				printf("%-5s|\n",cell);
+				printf("%-5s\n",cell);
 			}
 			
 		}
@@ -79,7 +79,7 @@ int main( int argc, char *argv[]){
 			{
 				printf("%s|", cell);
 			}
-			printf("%s|\n",cell);
+			printf("%s\n",cell);
 		}
 	}
 	//* tl5 to csv
