@@ -45,11 +45,15 @@ int main( int argc, char *argv[]){
 			}
 			if(strlen(cell) >= 5)
 			{
-				printf("%.5s",cell);
+				printf("%.5s\n",cell);
 			}
-			else if(strlen(cell) < 5)
+			// else if(strlen(cell) < 5)
+			// {
+			// 	printf("%-5s\n",cell);
+			// }
+			else //* no cell ends with white space character
 			{
-				printf("%-5s\n",cell);
+				printf("%s\n",cell);
 			}
 			
 		}
